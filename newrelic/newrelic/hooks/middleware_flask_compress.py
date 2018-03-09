@@ -41,8 +41,8 @@ def _nr_wrapper_Compress_after_request(wrapped, instance, args, kwargs):
     # Leave the response alone in this situation even though
     # it looked like flask_compress doesn't honour it.
 
-    #if getattr(response, 'direct_passthrough', None):
-    #    return wrapped(*args, **kwargs)
+    if getattr(response, 'direct_passthrough', None):
+        return wrapped(*args, **kwargs)
 
     # Need to be running within a valid web transaction.
 
